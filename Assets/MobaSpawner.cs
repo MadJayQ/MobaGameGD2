@@ -29,15 +29,12 @@ public class MobaSpawner : NetworkBehaviour {
 	void SpawnMinionSet() {
 		var minionUp = GameObject.Instantiate(MinionUpPrefab, transform.position, transform.rotation);
 		var minionBrain = minionUp.GetComponent<MobaMinionBrain>();
-		minionBrain.SetTeam(m_Team);
 		NetworkServer.Spawn(minionUp);
 		var minionLeft = GameObject.Instantiate(MinionLeftPrefab, transform.position, transform.rotation);
 		minionBrain = minionLeft.GetComponent<MobaMinionBrain>();
-		minionBrain.SetTeam(m_Team);
 		NetworkServer.Spawn(minionLeft);
 		var minionRight = GameObject.Instantiate(MinionRightPrefab, transform.position, transform.rotation);
 		minionBrain = minionRight.GetComponent<MobaMinionBrain>();
-		minionBrain.SetTeam(m_Team);
 		NetworkServer.Spawn(minionRight);
 	}
 

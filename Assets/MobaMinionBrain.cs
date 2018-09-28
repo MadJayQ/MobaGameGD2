@@ -32,6 +32,8 @@ public class MobaMinionBrain : MobaAttackBase {
 			AIMovementDirection = m_SavedDirection;
 			m_SavedDirection = Vector3.zero;
 		}
+
+		base.OnTargetSlain(other);
 	}
 
 

@@ -40,7 +40,7 @@ public class MobaAttackBase : NetworkBehaviour {
         Initialize();
     }
 
-    public void Initialize() {
+    public virtual void Initialize() {
         m_CharacterController = GetComponent<MobaCharacterController>();
         m_Team = m_CharacterController.Team;
         m_CharacterController.OnSpawnEvent.Invoke(m_CharacterController);
@@ -48,18 +48,22 @@ public class MobaAttackBase : NetworkBehaviour {
         m_Damageable = GetComponent<Damageable>();
 
         OnKilledTarget.AddListener(OnTargetSlain);
-    }
-
-    public void SetTeam(MobaTeam team) {
-        m_CharacterController.Team.CloneFromOther(team);
+        m_Damageable.OnDie.AddListener(OnDeath);
     }
 
     private void OnTriggerEnter(Collider collider) {
+        if(collider.isTrigger) {
+            return; //Ignore trigger colliders
+        }
         if(IsColliderTarget(collider)) {
             if(AttackingState == AttackState.ATTACK_STATE_IDLE) {
-                CmdSetTarget(collider.gameObject.GetComponent<NetworkIdentity>());
+                SetTarget(collider.gameObject.GetComponent<NetworkIdentity>());
             }
         }
+    }
+
+    protected virtual void SetTarget(NetworkIdentity target) {
+        CmdSetTarget(target);
     }
 
     [Command]
@@ -93,7 +97,7 @@ public class MobaAttackBase : NetworkBehaviour {
         AttackingState = newState;
     }
 
-    protected virtual void OnAttack(DamageSource source, NetworkIdentity target) {
+    protected virtual void OnAttack(DamageSource source, ref NetworkIdentity target) {
         if(!isServer) {
             return; //Only attack on the server.
         }
@@ -116,7 +120,7 @@ public class MobaAttackBase : NetworkBehaviour {
     protected IEnumerator AttackTimer() {
         while(true) {
             yield return new WaitForSeconds(m_AttackTimer);
-            OnAttack(m_DamageDealer, m_CurrentTarget);
+            OnAttack(m_DamageDealer, ref m_CurrentTarget);
         }
     }
 
@@ -153,7 +157,7 @@ public class MobaAttackBase : NetworkBehaviour {
     }
 
     public virtual void OnTargetSlain(NetworkIdentity other) {
-
+        OnAttackStateChanged(AttackingState, AttackState.ATTACK_STATE_IDLE);
     }
 
 }

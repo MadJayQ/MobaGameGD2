@@ -66,7 +66,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: d6cc441542ee8274aa9417e37aa4ae54, type: 2}
+  - {fileID: 2100000, guid: 4275702e7e9fc9444a483aebce91c248, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -146,18 +146,7 @@ MonoBehaviour:
       PublicKeyToken=null
   OnDie:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 114140711875212104}
-        m_MethodName: OnDeath
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: Damageable+DamageEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   OnHealthSet:

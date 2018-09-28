@@ -25,12 +25,14 @@ public class MobaCharacterController : BaseCharacterController
 
     public MobaTeam Team;
 
+
     // Use this for initialization
     void Awake()
     {
         GravityManager = GameObject.Find("Planet").GetComponent<GravityManager>();
         GravityManager.OnCharacterSpawned(this);
         var damageable = GetComponent<Damageable>();
+        Debug.Log("ASD");
         if(damageable != null) {
             damageable.OnDie.AddListener(GravityManager.OnDeath);
         }

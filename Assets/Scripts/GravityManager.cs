@@ -27,6 +27,9 @@ public class GravityManager : BaseMoverController
     }
 
     public void OnDeath(DamageSource source, Damageable damageable) {
+        if(damageable.GetComponent<PlayerBrain>()) {
+            return; //Hack
+        }
         var cc = damageable.GetComponent<MobaCharacterController>();
         if(cc != null) {
             UnControlGravity(cc); //No longer controlling gravity
