@@ -4,39 +4,11 @@ using UnityEngine;
 
 using UnityEngine.Networking;
 
-[RequireComponent(typeof(MobaCharacterController))]
-public class MobaMinionBrain : NetworkBehaviour {
+public class MobaMinionBrain : MobaAttackBase {
 
 	[SyncVar] public Vector3 AIMovementDirection;
 
-
-	private MobaCharacterController m_CharacterController;
-
-	// Use this for initialization
-	public void Awake() {
-		Initialize();
-	}
-	public void Initialize() {
-		m_CharacterController = GetComponent<MobaCharacterController>();
-		m_CharacterController.OnSpawnEvent.Invoke(m_CharacterController);
-	}
-
-	public void SetTeam(MobaTeam team) {
-		m_CharacterController.Team.CloneFromOther(team);
-	}
-
-	public void OnTriggerEnter(Collider col) {
-		var controller = col.gameObject.GetComponent<MobaCharacterController>();
-		if(controller == null) {
-			return;
-		}
-
-		if(controller.Team.IsFriendly(m_CharacterController.Team)) {
-			return;
-		} else {
-			SetMovementDirection(Vector3.zero);
-		}
-	}
+	private Vector3 m_SavedDirection = Vector3.zero;
 
 	void SetMovementDirection(Vector3 direction) {
 		AIMovementDirection = direction;
@@ -45,4 +17,22 @@ public class MobaMinionBrain : NetworkBehaviour {
 	void Update () {
 		m_CharacterController.MovementVector = AIMovementDirection;
 	}
+
+	protected override void OnAttackStateChanged(AttackState oldState, AttackState newState) {
+		if(newState == AttackState.ATTACK_STATE_TARGETFOUND) {
+			m_SavedDirection = AIMovementDirection;
+			SetMovementDirection(Vector3.zero);
+		}
+		base.OnAttackStateChanged(oldState, newState);
+	}
+
+	public override void OnTargetSlain(NetworkIdentity other) {
+		if(m_Alive) {
+			Debug.Log("I AM VICTORIOUS!");
+			AIMovementDirection = m_SavedDirection;
+			m_SavedDirection = Vector3.zero;
+		}
+	}
+
+
 }

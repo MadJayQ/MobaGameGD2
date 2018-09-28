@@ -7,4 +7,12 @@ public class DamageSource : MonoBehaviour {
 
 	public int damageAmount;
 	public DamageEvent OnDamage;
+
+	void Awake() {
+		OnDamage.AddListener(ExecuteDamage);
+	}
+
+	public void ExecuteDamage(DamageSource source, Damageable damageable) {
+		damageable.TakeDamage(source);
+	}
 }

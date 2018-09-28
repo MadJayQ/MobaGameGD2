@@ -30,6 +30,10 @@ public class MobaCharacterController : BaseCharacterController
     {
         GravityManager = GameObject.Find("Planet").GetComponent<GravityManager>();
         GravityManager.OnCharacterSpawned(this);
+        var damageable = GetComponent<Damageable>();
+        if(damageable != null) {
+            damageable.OnDie.AddListener(GravityManager.OnDeath);
+        }
     }
 
     // Update is called once per frame

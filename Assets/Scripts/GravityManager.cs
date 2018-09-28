@@ -26,6 +26,13 @@ public class GravityManager : BaseMoverController
         }
     }
 
+    public void OnDeath(DamageSource source, Damageable damageable) {
+        var cc = damageable.GetComponent<MobaCharacterController>();
+        if(cc != null) {
+            UnControlGravity(cc); //No longer controlling gravity
+        }
+    }
+
     public override void UpdateMovement(out Vector3 goalPosition, out Quaternion goalRotation, float deltaTime)
     {
         goalPosition = Mover.Rigidbody.position;

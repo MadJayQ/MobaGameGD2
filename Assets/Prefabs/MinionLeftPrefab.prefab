@@ -26,9 +26,10 @@ GameObject:
   - component: {fileID: 114082452394589808}
   - component: {fileID: 54963735331999040}
   - component: {fileID: 114040499776868928}
-  - component: {fileID: 114858978637306282}
   - component: {fileID: 114094428040542982}
   - component: {fileID: 135443504199692334}
+  - component: {fileID: 114311704600517406}
+  - component: {fileID: 114964398158944722}
   m_Layer: 0
   m_Name: MinionLeftPrefab
   m_TagString: Untagged
@@ -151,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f17a5fbc552f6d4cbc2fa441a7a15a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
+  maxHealth: 5
   OnTakeDamage:
     m_PersistentCalls:
       m_Calls: []
@@ -159,7 +160,18 @@ MonoBehaviour:
       PublicKeyToken=null
   OnDie:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114964398158944722}
+        m_MethodName: OnDeath
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: Damageable+DamageEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   OnHealthSet:
@@ -199,6 +211,23 @@ MonoBehaviour:
     i15: 178
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
+--- !u!114 &114311704600517406
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1667121182146908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 416029fa82bf26044b4483989fae1b16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 1
+  OnDamage:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: DamageSource+DamageEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &114800454368493944
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -221,7 +250,7 @@ MonoBehaviour:
   GravityManager: {fileID: 0}
   Team:
     TeamNum: 0
---- !u!114 &114858978637306282
+--- !u!114 &114964398158944722
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -232,6 +261,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb97ccb34f3aae3408334d09a23ef927, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnKilledTarget:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: MobaAttackBase+OnKillEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  AttackingState: 0
+  m_AttackTimer: 0.4
   AIMovementDirection: {x: -1, y: 0, z: 0}
 --- !u!135 &135443504199692334
 SphereCollider:
@@ -243,7 +279,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 5
+  m_Radius: 2.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &136633062979105008
 CapsuleCollider:

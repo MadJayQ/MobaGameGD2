@@ -30,6 +30,7 @@ GameObject:
   - component: {fileID: 114367142984878410}
   - component: {fileID: 114423423815206026}
   - component: {fileID: 135049081482517132}
+  - component: {fileID: 114472590675344068}
   m_Layer: 0
   m_Name: MinionPrefab
   m_TagString: Untagged
@@ -118,6 +119,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb97ccb34f3aae3408334d09a23ef927, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnKilledTarget:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: MobaAttackBase+OnKillEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  AttackingState: 0
+  m_AttackTimer: 0.4
   AIMovementDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &114205670269627694
 MonoBehaviour:
@@ -130,7 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f17a5fbc552f6d4cbc2fa441a7a15a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
+  maxHealth: 5
   OnTakeDamage:
     m_PersistentCalls:
       m_Calls: []
@@ -138,7 +146,18 @@ MonoBehaviour:
       PublicKeyToken=null
   OnDie:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114140711875212104}
+        m_MethodName: OnDeath
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: Damageable+DamageEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   OnHealthSet:
@@ -255,6 +274,23 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
+--- !u!114 &114472590675344068
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1263718302886428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 416029fa82bf26044b4483989fae1b16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 1
+  OnDamage:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: DamageSource+DamageEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!135 &135049081482517132
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -265,7 +301,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 5
+  m_Radius: 2.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &136571488072598172
 CapsuleCollider:

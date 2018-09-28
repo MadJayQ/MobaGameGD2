@@ -44,7 +44,7 @@ public class MobaSpawner : NetworkBehaviour {
 	private IEnumerator SpawnMinions() {
 		while(true) {
 			SpawnMinionSet();
-			yield return new WaitForSeconds(50f);
+			yield return new WaitForSeconds(5f);
 		}
 	}
 }

@@ -21,13 +21,10 @@ public class Damageable : MonoBehaviour {
 		return m_CurrentHealth;
 	}
 
-	void Start () {
+	void Awake () {
 		m_CurrentHealth = maxHealth;
 	}
 
-	public void OnPlayerDie(DamageSource source, Damageable damageable) {
-		SceneManager.LoadScene(5, LoadSceneMode.Single);
-	}
 	public void TakeDamage(DamageSource source) {
 		m_CurrentHealth -= source.damageAmount;
 
