@@ -1,0 +1,94 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1471331408880478}
+  m_IsPrefabAsset: 1
+--- !u!1 &1471331408880478
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4225924892016692}
+  - component: {fileID: 114024932301320756}
+  - component: {fileID: 114380620050735010}
+  m_Layer: 0
+  m_Name: SpawnerPrefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4225924892016692
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1471331408880478}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &114024932301320756
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1471331408880478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c1a8fb596ecd6c47bafe44561f6072d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Team:
+    TeamNum: 0
+  MinionLeftPrefab: {fileID: 1667121182146908, guid: 4ec8fa2f4fac96947a40414b77c8fdb2,
+    type: 2}
+  MinionRightPrefab: {fileID: 1667121182146908, guid: 17c4a286c82eb96428940c3966ff38ab,
+    type: 2}
+  MinionUpPrefab: {fileID: 1667121182146908, guid: 2fccaf07d8dc400438b3bffe813fda99,
+    type: 2}
+--- !u!114 &114380620050735010
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1471331408880478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 234
+    i1: 218
+    i2: 116
+    i3: 72
+    i4: 207
+    i5: 122
+    i6: 78
+    i7: 164
+    i8: 168
+    i9: 150
+    i10: 96
+    i11: 116
+    i12: 152
+    i13: 47
+    i14: 185
+    i15: 100
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
